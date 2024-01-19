@@ -17,3 +17,6 @@ node_modules
 
 # README is just documentation
 README.md
+
+sandbox
+sandbox/*

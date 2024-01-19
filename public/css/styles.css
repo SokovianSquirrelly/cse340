@@ -1,6 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap');
+
 /******* Change Box Model ***************/
 *,
 *:before,
 *:after {
   box-sizing: border-box;
+}
+
+:root {
+  --header-font: 'Orbitron', sans-serif;
+  --par-font: 'Roboto', sans-serif;
+}
+
+/****************************
+ * General
+ ****************************/
+ h1, h2 {
+  font-family: var(--header-font);
+ }
+ 
+ a, p, ul {
+  font-family: var(--par-font);
+ }
+
+/****************************
+ * Navigation
+ ****************************/
+
+nav {
+  background-color: black;
+  color: white;
+}
+
+nav ul {
+  list-style-type: none;
 }
