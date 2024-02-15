@@ -1,0 +1,18 @@
+<% if (title) { %>
+<h1><%= title %></h1>
+<% } else { res.redirect('/') } %>
+
+<p><%= message %></p>
+<% const jokes = ["What do you call a Ford Fiesta that ran out of gas? A Ford Siesta!",
+"What do you call a Mexican who lost his car? Carlos!",
+"What happens to a frog's car when it breaks down?  It gets toad!",
+"What kind of car does Gordon Ramsey drive? A chef-rolet!",
+"Why do chicken coops only have two doors?  Because if they had four doors, they'd be a chicken sedan!",
+"What do you call a used car salesman?  A car-deal-ologist!",
+"My daughter said I could never make a car out of spaghetti.  You should have seen the look on her face when I drove pasta!",
+"I ran my Subi into the lake.  Now it's a Scubaru!"];
+
+const selectedJoke = jokes[Math.floor(Math.random() * jokes.length)];
+%>
+<p>...but at least here's a joke to make you feel better!</p>
+<p><%= selectedJoke %></p>
