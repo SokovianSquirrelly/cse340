@@ -162,7 +162,7 @@ nav ul li a {
     justify-content: space-around;
   }
 
-  main {
+  #home-page {
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
