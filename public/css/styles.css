@@ -82,7 +82,7 @@ nav ul li a {
 }
 
 /****************************
- * Main
+ * Home Page
  ****************************/
 #hero {
   position: relative;
@@ -140,6 +140,10 @@ nav ul li a {
   display: block;
   text-align: center;
 }
+
+/****************************
+ * Classifications Page
+ ****************************/
 
 /****************************
  * Media Query
