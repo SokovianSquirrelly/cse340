@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap");
 
 /******* Change Box Model ***************/
 *,
@@ -10,19 +10,22 @@
 }
 
 :root {
-  --header-font: 'Orbitron', sans-serif;
-  --par-font: 'Roboto', sans-serif;
+  --header-font: "Orbitron", sans-serif;
+  --par-font: "Roboto", sans-serif;
 }
 
 /****************************
  * General
  ****************************/
-h1, h2 {
+h1,
+h2 {
   font-family: var(--header-font);
   margin: 0.5em;
 }
- 
-a, p, ul {
+
+a,
+p,
+ul {
   font-family: var(--par-font);
 }
 
@@ -82,7 +85,7 @@ nav ul li a {
 }
 
 /****************************
- * Home Page
+ * General Main
  ****************************/
 #hero {
   position: relative;
@@ -99,7 +102,8 @@ nav ul li a {
   background: rgba(2, 113, 247, 0.6);
 }
 
-#hero-overlay h2, #hero-overlay p {
+#hero-overlay h2,
+#hero-overlay p {
   margin: 0.25em;
 }
 
@@ -144,11 +148,59 @@ nav ul li a {
 /****************************
  * Classifications Page
  ****************************/
+#inv-display {
+  list-style-type: none;
+}
+
+#inv-display li {
+  margin: 1em;
+  border: 2px solid black;
+  background-color: lightgray;
+}
+
+#inv-display li img {
+  width: 100%;
+}
+
+.namePrice span {
+  margin: 1em;
+}
+
+/****************************
+ * Listing
+ ****************************/
+
+#vehicle-details h3 {
+  font-family: var(--par-font);
+  margin: 0.5em;
+}
+
+#vehicle-details h4 {
+  font-family: var(--par-font);
+  margin-left: 1em;
+}
+
+#vehicle-details button {
+  margin: 1em 0;
+  padding: 1em;
+  width: 100%;
+  font-family: var(--header-font);
+  font-weight: bold;
+  color: white;
+  font-size: 1.5em;
+  border: none;
+  border-radius: 3em;
+  background-color: rgb(2, 113, 247);
+}
 
 /****************************
  * Media Query
  ****************************/
 @media only screen and (min-width: 769px) {
+
+ /****************************
+  * Media Query General
+  ****************************/
   body {
     background-image: URL("/images/site/checkerboard.jpg");
   }
@@ -166,6 +218,9 @@ nav ul li a {
     justify-content: space-around;
   }
 
+ /****************************
+  * Media Query Home Page
+  ****************************/
   #home-page {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -176,7 +231,8 @@ nav ul li a {
     text-align: center;
   }
 
-  #welcome-message, #hero {
+  #welcome-message,
+  #hero {
     grid-column: 1/3;
   }
 
@@ -185,6 +241,35 @@ nav ul li a {
   }
 
   #reviews ul {
+    margin-left: 2em;
+  }
+
+ /****************************
+  * Media Query Classifications Page
+  ****************************/
+  #inv-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+ /****************************
+  * Media Query Listing
+  ****************************/
+  #listing-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #listing-page h1 {
+    grid-column: 1/3;
+  }
+
+  #listing-page img {
+    width: 100%;
+  }
+
+  #vehicle-details button {
+    width: 80%;
     margin-left: 2em;
   }
 }

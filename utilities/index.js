@@ -79,8 +79,11 @@ Util.buildClassificationGrid = async function (data) {
 };
 
 Util.buildInventoryListing = async function (vehicle) {
-  let listing = `<img src="${vehicle.inv_image}"/>`;
+  let listing = "<div id=listing>"
+  listing = `<img src="${vehicle.inv_image}"/>`;
+  listing += "<div id=vehicle-details>"
   listing += `<h3>${vehicle.inv_description}</h3>`;
+  listing += "<hr/>";
   listing += `<h4>Year: ${vehicle.inv_year}</h4>`;
   listing += `<h4>Price: $${new Intl.NumberFormat("en-US").format(
     vehicle.inv_price
@@ -90,6 +93,7 @@ Util.buildInventoryListing = async function (vehicle) {
   )} miles</h4>`;
   listing += `<h4>Color: ${vehicle.inv_color}</h4>`;
   listing += `<button>Buy Now!</button>`;
+  listing += "</div></div>";
   return listing;
 };
 
