@@ -79,9 +79,9 @@ Util.buildClassificationGrid = async function (data) {
 };
 
 Util.buildInventoryListing = async function (vehicle) {
-  let listing = "<div id=listing>"
+  let listing = "<div id=listing>";
   listing = `<img src="${vehicle.inv_image}"/>`;
-  listing += "<div id=vehicle-details>"
+  listing += "<div id=vehicle-details>";
   listing += `<h3>${vehicle.inv_description}</h3>`;
   listing += "<hr/>";
   listing += `<h4>Year: ${vehicle.inv_year}</h4>`;

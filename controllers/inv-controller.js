@@ -28,8 +28,8 @@ invCont.buildByInventoryId = async function (req, res, next) {
   res.render("./inventory/listing", {
     title: invName,
     nav,
-    listing
+    listing,
   });
-}
+};
 
 module.exports = invCont;

@@ -197,8 +197,7 @@ nav ul li a {
  * Media Query
  ****************************/
 @media only screen and (min-width: 769px) {
-
- /****************************
+  /****************************
   * Media Query General
   ****************************/
   body {
@@ -218,7 +217,7 @@ nav ul li a {
     justify-content: space-around;
   }
 
- /****************************
+  /****************************
   * Media Query Home Page
   ****************************/
   #home-page {
@@ -244,7 +243,7 @@ nav ul li a {
     margin-left: 2em;
   }
 
- /****************************
+  /****************************
   * Media Query Classifications Page
   ****************************/
   #inv-display {
@@ -252,7 +251,7 @@ nav ul li a {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 
- /****************************
+  /****************************
   * Media Query Listing
   ****************************/
   #listing-page {
