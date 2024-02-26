@@ -12,6 +12,9 @@
 :root {
   --header-font: "Orbitron", sans-serif;
   --par-font: "Roboto", sans-serif;
+
+  --full-blue: rgb(2, 113, 247);
+  --transparent-blue: rgba(2, 113, 247, 0.6);
 }
 
 /****************************
@@ -66,7 +69,6 @@ img {
 /****************************
  * Navigation
  ****************************/
-
 nav {
   background-color: black;
 }
@@ -87,6 +89,14 @@ nav ul li a {
 /****************************
  * General Main
  ****************************/
+.message {
+  margin: 0.5em;
+  text-align: center;
+}
+
+/****************************
+ * Home
+ ****************************/
 #hero {
   position: relative;
 }
@@ -99,7 +109,7 @@ nav ul li a {
   position: absolute;
   top: 5%;
   left: 5%;
-  background: rgba(2, 113, 247, 0.6);
+  background: var(--transparent-blue);
 }
 
 #hero-overlay h2,
@@ -131,7 +141,7 @@ nav ul li a {
   border: 0.25em solid black;
   border-radius: 1em;
   margin: 1em;
-  background-color: rgba(2, 113, 247, 0.6);
+  background-color: var(--transparent-blue);
 }
 
 #upgrades img {
@@ -169,7 +179,6 @@ nav ul li a {
 /****************************
  * Listing
  ****************************/
-
 #vehicle-details h3 {
   font-family: var(--par-font);
   margin: 0.5em;
@@ -190,7 +199,68 @@ nav ul li a {
   font-size: 1.5em;
   border: none;
   border-radius: 3em;
-  background-color: rgb(2, 113, 247);
+  background-color: var(--full-blue);
+}
+
+/****************************
+ * Forms
+ ****************************/
+form {
+  background-color: lightgray;
+  border: 2px solid black;
+  margin: 1em auto;
+  padding: 1em;
+}
+
+form label,
+form input {
+  display: block;
+}
+
+form label {
+  margin-top: 0.5em;
+  font-family: var(--par-font);
+}
+
+.textinp {
+  height: 44px;
+  width: 80%;
+}
+
+.submit-button {
+  margin: 1em auto;
+  border: none;
+  background-color: var(--full-blue);
+  font-size: 1.5em;
+  color: white;
+  padding: 1em;
+  border-radius: 5px;
+}
+
+/****************************
+ * Errors
+ ****************************/
+#error-gif {
+  margin: 1em auto;
+}
+
+.joke-line {
+  margin: 0.5em;
+  text-align: center;
+}
+
+#actual-joke {
+  font-size: 1.5em;
+}
+
+/****************************
+ * Footer
+ ****************************/
+footer {
+  background-color: black;
+  color: white;
+  padding: 1em;
+  margin-top: 2em;
 }
 
 /****************************
@@ -208,7 +278,7 @@ nav ul li a {
     width: 80%;
     margin: 1em auto;
     background-color: white;
-    border: 1.5em solid rgb(2, 113, 247);
+    border: 1.5em solid var(--full-blue);
     border-radius: 1em;
   }
 
@@ -270,5 +340,12 @@ nav ul li a {
   #vehicle-details button {
     width: 80%;
     margin-left: 2em;
+  }
+
+  /****************************
+  * Media Query Forms
+  ****************************/
+  form {
+    margin: 1em 3em;
   }
 }

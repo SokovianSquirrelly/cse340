@@ -2,7 +2,7 @@
 <h1><%= title %></h1>
 <% } else { res.redirect('/') } %>
 
-<p><%= message %></p>
+<p class="message"><%= message %></p>
 <% const jokes = ["What do you call a Ford Fiesta that ran out of gas? A Ford Siesta!",
 "What do you call a Mexican who lost his car? Carlos!",
 "What happens to a frog's car when it breaks down?  It gets toad!",
@@ -19,5 +19,6 @@
 
 const selectedJoke = jokes[Math.floor(Math.random() * jokes.length)];
 %>
-<p>...but at least here's a joke to make you feel better!</p>
-<p><%= selectedJoke %></p>
+<img id="error-gif" src="/images/errors/drive-into-lake.gif" alt="Michael Scott driving into a lake" />
+<p class="joke-line">...but at least here's a joke to make you feel better!</p>
+<p class="joke-line" id="actual-joke"><b><%= selectedJoke %></b></p>
