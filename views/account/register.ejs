@@ -1,29 +1,29 @@
 <% if (title) { %>
 <h1><%= title %></h1>
-<% } else { res.redirect('/') } %> <%# notice %>
+<% } else { res.redirect('/') } %>
 
 <form action="/account/register" method="post">
-  <label for="account-firstname">First Name</label>
+  <label for="account_firstname">First Name</label>
   <input
-    name="account-firstname"
+    name="account_firstname"
     type="text"
-    id="account-firstname"
+    id="account_firstname"
     class="textinp"
   />
-  <label for="account-lastname">Last Name</label>
+  <label for="account_lastname">Last Name</label>
   <input
-    name="account-lastname"
+    name="account_lastname"
     type="text"
-    id="account-lastname"
+    id="account_lastname"
     class="textinp"
   />
-  <label for="account-email">Email</label>
-  <input name="account-email" type="email" id="account-email" class="textinp" />
-  <label for="account-password">Password</label>
+  <label for="account_email">Email</label>
+  <input name="account_email" type="email" id="account_email" class="textinp" />
+  <label for="account_password">Password</label>
   <input
-    name="account-password"
+    name="account_password"
     type="password"
-    id="account-password"
+    id="account_password"
     class="textinp"
   />
   <input type="submit" class="submit-button" value="Register" />

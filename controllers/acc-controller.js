@@ -42,6 +42,8 @@ async function registerAccount(req, res) {
     account_password
   );
 
+  console.log("This is the result", regResult);
+
   if (regResult) {
     req.flash(
       "notice",

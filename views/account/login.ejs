@@ -1,6 +1,6 @@
 <% if (title) { %>
 <h1><%= title %></h1>
-<% } else { res.redirect('/') } %> <%# notice %>
+<% } else { res.redirect('/') } %> <%- messages() %>
 
 <form action="">
   <label for="">Email</label>
