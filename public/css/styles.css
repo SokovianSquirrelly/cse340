@@ -158,10 +158,6 @@ li {
 /****************************
  * Classifications Page
  ****************************/
-#inv-display {
-  list-style-type: none;
-}
-
 #inv-display li {
   margin: 1em;
   border: 2px solid black;
