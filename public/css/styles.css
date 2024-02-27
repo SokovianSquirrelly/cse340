@@ -73,13 +73,9 @@ nav {
   background-color: black;
 }
 
-nav ul {
-  list-style-type: none;
-}
-
 nav ul li {
   margin-left: 1em;
-  padding: 0.25em;
+  padding: 0.5em;
 }
 
 nav ul li a {
@@ -92,6 +88,10 @@ nav ul li a {
 .message {
   margin: 0.5em;
   text-align: center;
+}
+
+li {
+  list-style-type: none;
 }
 
 /****************************
@@ -227,6 +227,10 @@ form label {
   width: 80%;
 }
 
+#password-instructions {
+  color: gray;
+}
+
 .submit-button {
   margin: 1em auto;
   border: none;
@@ -242,6 +246,8 @@ form label {
  ****************************/
 #error-gif {
   margin: 1em auto;
+  display: flex;
+  width: 100%;
 }
 
 .joke-line {
@@ -347,5 +353,12 @@ footer {
   ****************************/
   form {
     margin: 1em 3em;
+  }
+
+  /****************************
+  * Media Query Errors
+  ****************************/
+  #error-gif {
+    width: 40%;
   }
 }

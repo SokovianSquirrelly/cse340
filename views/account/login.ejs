@@ -4,9 +4,14 @@
 
 <form action="">
   <label for="">Email</label>
-  <input type="email" class="textinp" />
+  <input type="email" class="textinp" required />
   <label for="">Password</label>
-  <input type="password" class="textinp" />
+  <input
+    type="password"
+    class="textinp"
+    required
+    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+  />
   <input type="submit" class="submit-button" value="Login" />
   <p>No account? <a href="/account/register">Sign-up</a></p>
 </form>
