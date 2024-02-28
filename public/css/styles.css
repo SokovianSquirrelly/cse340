@@ -223,6 +223,11 @@ form label {
   width: 80%;
 }
 
+input:required:invalid,
+input:focus:invalid {
+  border: 3px solid red;
+}
+
 #password-instructions {
   color: gray;
 }

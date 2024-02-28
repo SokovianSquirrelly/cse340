@@ -9,6 +9,7 @@
 <% } %>
 
 <form action="/account/register" method="post">
+  <p>All fields are required</p>
   <label for="account_firstname">First Name</label>
   <input
     name="account_firstname"
@@ -16,6 +17,7 @@
     id="account_firstname"
     class="textinp"
     required
+    value="<%= locals.account_firstname %>"
   />
   <label for="account_lastname">Last Name</label>
   <input
@@ -24,6 +26,7 @@
     id="account_lastname"
     class="textinp"
     required
+    value="<%= locals.account_lastname %>"
   />
   <label for="account_email">Email</label>
   <input
@@ -32,6 +35,7 @@
     id="account_email"
     class="textinp"
     required
+    value="<%= locals.account_email %>"
   />
   <label for="account_password">Password</label>
   <input
