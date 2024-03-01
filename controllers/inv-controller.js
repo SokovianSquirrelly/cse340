@@ -19,6 +19,9 @@ invCont.buildByClassificationId = async function (req, res, next) {
   });
 };
 
+/* ***************************
+ *  Build inventory by listing
+ * ************************** */
 invCont.buildByInventoryId = async function (req, res, next) {
   const inventory_id = req.params.inventoryId;
   const data = await invModel.getInventoryByInventoryId(inventory_id);
@@ -29,6 +32,17 @@ invCont.buildByInventoryId = async function (req, res, next) {
     title: invName,
     nav,
     listing,
+  });
+};
+
+/* ***************************
+ *  Build management view
+ * ************************** */
+invCont.buildByManagement = async function (req, res, next) {
+  let nav = await utilities.getNav();
+  res.render("./inventory/management", {
+    title: "Management",
+    nav,
   });
 };
 
