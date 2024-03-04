@@ -38,12 +38,63 @@ invCont.buildByInventoryId = async function (req, res, next) {
 /* ***************************
  *  Build management view
  * ************************** */
-invCont.buildByManagement = async function (req, res, next) {
+invCont.buildManagement = async function (req, res, next) {
   let nav = await utilities.getNav();
   res.render("./inventory/management", {
     title: "Management",
     nav,
   });
+};
+
+/* ***************************
+ *  Build new classification view
+ * ************************** */
+invCont.buildNewClassification = async function (req, res, next) {
+  let nav = await utilities.getNav();
+  res.render("./inventory/new-classification", {
+    title: "New Classification",
+    nav,
+    errors: null,
+  });
+};
+
+/* ***************************
+ *  Build new vehicle view
+ * ************************** */
+invCont.buildNewVehicle = async function (req, res, next) {
+  let nav = await utilities.getNav();
+  res.render("./inventory/new-vehicle", {
+    title: "New Vehicle",
+    nav,
+    errors: null,
+  });
+};
+
+invCont.createNewClassification = async function (req, res) {
+  const classification_name = req.body.classification_name;
+  console.log(`The classification name is ${classification_name}`)
+
+  const invClassResult = await invModel.createNewClassification(
+    classification_name
+  );
+  let nav = await utilities.getNav();
+  if (invClassResult) {
+    req.flash(
+      "notice",
+      `${classification_name} classification successfully added.`
+    );
+    res.status(201).render("./inventory/management", {
+      title: "Management",
+      nav,
+      errors: null,
+    });
+  } else {
+    req.flash("notice", "Sorry, the new classification couldn't be added.");
+    res.status(501).render("./inventory/new-classification", {
+      title: "New Classification",
+      nav,
+    });
+  }
 };
 
 module.exports = invCont;

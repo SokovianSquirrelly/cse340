@@ -1,0 +1,5 @@
+<% if (title) { %>
+<h1><%= title %></h1>
+<% } else { res.redirect('/') } %><%- messages() %>
+
+<form action="/inventory/new-vehicle" method="post"></form>

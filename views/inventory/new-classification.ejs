@@ -1,0 +1,24 @@
+<% if (title) { %>
+<h1><%= title %></h1>
+<% } else { res.redirect('/') } %><%- messages() %>
+
+<form action="/inv/new-classification" method="post">
+  <label for="classification_name">Classification Name</label>
+  <input
+    type="text"
+    class="textinp"
+    required
+    name="classification_name"
+    placeholder="i.e. Motorcycles"
+    pattern="[0-9a-zA-Z]*"
+    value="<%= locals.classification_name %>"
+  />
+  <p class="input-instructions">
+    The classification name cannot contain spaces or special characters.
+  </p>
+  <input
+    type="submit"
+    class="submit-button"
+    value="Create New Classification"
+  />
+</form>

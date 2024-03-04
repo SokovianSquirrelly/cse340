@@ -228,7 +228,7 @@ input:focus:invalid {
   border: 3px solid red;
 }
 
-#password-instructions {
+.input-instructions {
   color: gray;
 }
 

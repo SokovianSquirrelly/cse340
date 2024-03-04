@@ -18,7 +18,7 @@ async function registerAccount(
       account_email,
       account_password,
     ]);
-    console.log("This is the SQL response.", response);
+    //console.log("This is the SQL response.", response);
     return response;
   } catch (error) {
     return error.message;
