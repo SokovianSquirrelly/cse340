@@ -229,7 +229,10 @@ input:focus:invalid {
 }
 
 .input-instructions {
-  color: gray;
+  background-color: black;
+  color: white;
+  padding: 0.5em;
+  margin: 0.25em;
 }
 
 .submit-button {
@@ -240,6 +243,25 @@ input:focus:invalid {
   color: white;
   padding: 1em;
   border-radius: 5px;
+}
+
+/****************************
+ * Management
+ ****************************/
+#management-links {
+  display: flex;
+  flex-direction: column;
+}
+
+#management-links a {
+  text-align: center;
+  padding: 3em;
+  border: 2px solid black;
+  border-radius: 15px;
+  background-color: lightgray;
+  margin: 1em;
+  font-family: var(--header-font);
+  font-size: 1.5em;
 }
 
 /****************************
@@ -354,6 +376,19 @@ footer {
   ****************************/
   form {
     margin: 1em 3em;
+  }
+
+  /****************************
+ * Media Query Management
+ ****************************/
+  #management-links {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  #management-links a:hover {
+    color: white;
+    background-color: black;
   }
 
   /****************************

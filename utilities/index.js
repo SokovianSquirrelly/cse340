@@ -98,7 +98,7 @@ Util.buildInventoryListing = async function (vehicle) {
 Util.buildClassificationList = async function (classification_id = null) {
   let data = await invModel.getClassifications();
   let classificationList =
-    '<select name="classification_id" id="classificationList"';
+    '<select name="classification_id" id="classificationList" class="textinp"';
   classificationList += "<option>Choose a Classification</option>";
   data.rows.forEach((row) => {
     classificationList += `<option value="${row.classification_id}"`;
