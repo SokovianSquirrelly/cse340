@@ -43,7 +43,7 @@ router.post(
   "/new-vehicle",
   invAccept.newVehicleRules(),
   invAccept.checkVehicleData,
-  utilities.handleErrors(invController.buildManagement)
+  utilities.handleErrors(invController.createNewVehicle)
 );
 
 module.exports = router;

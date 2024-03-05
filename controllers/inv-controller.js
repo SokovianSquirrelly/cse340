@@ -62,17 +62,18 @@ invCont.buildNewClassification = async function (req, res, next) {
  *  Build new vehicle view
  * ************************** */
 invCont.buildNewVehicle = async function (req, res, next) {
+  const classList = await utilities.buildClassificationList();
   let nav = await utilities.getNav();
   res.render("./inventory/new-vehicle", {
     title: "New Vehicle",
     nav,
     errors: null,
+    classList,
   });
 };
 
 invCont.createNewClassification = async function (req, res) {
   const classification_name = req.body.classification_name;
-  console.log(`The classification name is ${classification_name}`)
 
   const invClassResult = await invModel.createNewClassification(
     classification_name
@@ -92,6 +93,53 @@ invCont.createNewClassification = async function (req, res) {
     req.flash("notice", "Sorry, the new classification couldn't be added.");
     res.status(501).render("./inventory/new-classification", {
       title: "New Classification",
+      nav,
+    });
+  }
+};
+
+invCont.createNewVehicle = async function (req, res) {
+  let nav = await utilities.getNav();
+  const {
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_price,
+    inv_miles,
+    inv_color,
+    inv_image,
+    inv_thumbnail,
+    classification_id,
+  } = req.body;
+
+  const vehicleResult = await invModel.createNewVehicle(
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_price,
+    inv_miles,
+    inv_color,
+    inv_image,
+    inv_thumbnail,
+    classification_id
+  );
+
+  if (vehicleResult) {
+    req.flash(
+      "notice",
+      `The new ${inv_make} ${inv_model} has been succesfully added.`
+    );
+    res.status(201).render("./inventory/management", {
+      title: "Management",
+      nav,
+      errors: null,
+    });
+  } else {
+    req.flash("notice", "Sorry, there was an issue.");
+    res.status(501).render("./inventory/new-vehicle", {
+      title: "New Vehicle",
       nav,
     });
   }
