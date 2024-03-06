@@ -18,7 +18,7 @@ router.get(
 );
 
 router.get(
-  "/management",
+  "/",
   utilities.handleErrors(invController.buildManagement)
 );
 

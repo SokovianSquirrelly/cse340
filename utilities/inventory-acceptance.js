@@ -17,7 +17,6 @@ accept.checkClassificationData = async (req, res, next) => {
   let errors = [];
   errors = validationResult(req);
   if (!errors.isEmpty()) {
-    console.log("Did I reach here?");
     let nav = await utilities.getNav();
     res.render("inventory/new-classification", {
       errors,
@@ -60,6 +59,7 @@ accept.newVehicleRules = () => {
     body("inv_miles")
       .trim()
       .isLength({ min: 1 })
+      .isInt({ min: 1 })
       .withMessage("Please enter the mileage."),
 
     body("inv_color")
