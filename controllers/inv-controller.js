@@ -62,7 +62,8 @@ invCont.buildNewClassification = async function (req, res, next) {
  *  Build new vehicle view
  * ************************** */
 invCont.buildNewVehicle = async function (req, res, next) {
-  const classList = await utilities.buildClassificationList();
+  const classification_id = req.query.classification_id || null;
+  const classList = await utilities.buildClassificationList(classification_id);
   let nav = await utilities.getNav();
   res.render("./inventory/new-vehicle", {
     title: "New Vehicle",

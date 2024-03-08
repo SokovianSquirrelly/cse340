@@ -31,6 +31,11 @@ accept.checkClassificationData = async (req, res, next) => {
 
 accept.newVehicleRules = () => {
   return [
+    body("classification_id")
+      .trim()
+      .isLength({ min: 1 })
+      .withMessage("Please choose a classification."),
+
     body("inv_make")
       .trim()
       .isLength({ min: 1 })
@@ -96,10 +101,14 @@ accept.checkVehicleData = async (req, res, next) => {
   errors = validationResult(req);
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav();
+    const classList = await utilities.buildClassificationList(
+      classification_id
+    );
     res.render("inventory/new-vehicle", {
       errors,
       title: "New Vehicle",
       nav,
+      classList,
       inv_make,
       inv_model,
       inv_year,
