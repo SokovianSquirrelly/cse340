@@ -1,7 +1,6 @@
 const express = require("express");
 const router = new express.Router();
 const accController = require("../controllers/acc-controller");
-const baseController = require("../controllers/base-controller");
 const utilities = require("../utilities");
 const regValidate = require("../utilities/account-validation");
 
@@ -21,7 +20,9 @@ router.post(
   "/login",
   regValidate.loginRules(),
   regValidate.checkLoginData,
-  utilities.handleErrors(baseController.buildHome)
+  utilities.handleErrors(accController.accountLogin)
 );
+
+router.get("/", utilities.handleErrors(accController.buildAccountManagement));
 
 module.exports = router;
