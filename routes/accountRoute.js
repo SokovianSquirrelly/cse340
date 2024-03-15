@@ -23,6 +23,10 @@ router.post(
   utilities.handleErrors(accController.accountLogin)
 );
 
-router.get("/", utilities.handleErrors(accController.buildAccountManagement));
+router.get(
+  "/",
+  utilities.checkLogin,
+  utilities.handleErrors(accController.buildAccountManagement)
+);
 
 module.exports = router;
