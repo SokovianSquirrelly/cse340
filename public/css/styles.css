@@ -264,6 +264,36 @@ input:focus:invalid {
   font-size: 1.5em;
 }
 
+#inventoryDisplay {
+  border: 3px solid gray;
+  margin: 1em;
+  width: 40%;
+}
+
+#inventoryDisplay thead {
+  font-family: var(--header-font);
+}
+
+#inventoryDisplay tbody {
+  font-family: var(--par-font);
+}
+
+#inventoryDisplay td {
+  padding: 0.5em;
+}
+
+.modify, .delete {
+  text-align: center;
+}
+
+.modify:hover {
+  background-color: yellow;
+}
+
+.delete:hover {
+  background-color: red;
+}
+
 /****************************
  * Errors
  ****************************/

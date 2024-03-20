@@ -17,10 +17,7 @@ router.get(
   utilities.handleErrors(invController.buildByInventoryId)
 );
 
-router.get(
-  "/",
-  utilities.handleErrors(invController.buildManagement)
-);
+router.get("/", utilities.handleErrors(invController.buildManagement));
 
 router.get(
   "/new-classification",
@@ -44,6 +41,11 @@ router.post(
   invAccept.newVehicleRules(),
   invAccept.checkVehicleData,
   utilities.handleErrors(invController.createNewVehicle)
+);
+
+router.get(
+  "/getInventory/:classificationId",
+  utilities.handleErrors(invController.getInventoryJSON)
 );
 
 module.exports = router;
