@@ -48,4 +48,13 @@ router.get(
   utilities.handleErrors(invController.getInventoryJSON)
 );
 
+router.get("/edit/:inv_id", utilities.handleErrors(invController.editVehicle));
+
+router.post(
+  "/update/",
+  invAccept.newVehicleRules(),
+  invAccept.checkUpdateData,
+  utilities.handleErrors(invController.updateVehicle)
+);
+
 module.exports = router;

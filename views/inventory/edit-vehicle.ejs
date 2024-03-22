@@ -1,0 +1,109 @@
+<% if (title) { %>
+<h1><%= title %></h1>
+<% } else { res.redirect('/') } %><%- messages() %><% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
+<% } %>
+
+<form action="/inv/update" method="post" id="updateForm">
+  <p>All fields are required</p>
+  <label for="classification_id">Vehicle Class</label>
+  <%- classList %>
+  <label for="inv_make">Make</label>
+  <input
+    id="inv_make"
+    type="text"
+    name="inv_make"
+    class="textinp"
+    required
+    value="<%= locals.inv_make %>"
+  />
+  <label for="inv_model">Model</label>
+  <input
+    id="inv_model"
+    type="text"
+    name="inv_model"
+    class="textinp"
+    required
+    value="<%= locals.inv_model %>"
+  />
+  <label for="inv_year">Year</label>
+  <input
+    id="inv_year"
+    type="number"
+    name="inv_year"
+    class="textinp"
+    required
+    value="<%= locals.inv_year %>"
+  />
+  <label for="inv_description">Description</label>
+  <textarea
+    name="inv_description"
+    id="inv_description"
+    cols="30"
+    rows="10"
+    required
+    class="textinp"
+  >
+<%= locals.inv_description %></textarea
+  >
+  <label for="inv_price">Price</label>
+  <input
+    id="inv_price"
+    type="number"
+    name="inv_price"
+    class="textinp"
+    required
+    value="<%= locals.inv_price %>"
+  />
+  <label for="inv_miles">Miles</label>
+  <input
+    id="inv_miles"
+    type="number"
+    name="inv_miles"
+    class="textinp"
+    required
+    value="<%= locals.inv_miles %>"
+  />
+  <label for="inv_color">Color</label>
+  <input
+    id="inv_color"
+    type="text"
+    name="inv_color"
+    class="textinp"
+    required
+    value="<%= locals.inv_color %>"
+  />
+  <label for="inv_image">Large Image Link</label>
+  <input
+    id="inv_image"
+    type="text"
+    name="inv_image"
+    class="textinp"
+    required
+    value="/images/vehicles/no-image.png"
+  />
+  <label for="inv_thumbnail">Thumbnail Link</label>
+  <input
+    id="inv_thumbnail"
+    type="text"
+    name="inv_thumbnail"
+    class="textinp"
+    required
+    value="/images/vehicles/no-image-tn.png"
+  />
+  <input
+    type="submit"
+    class="submit-button"
+    value="Update Vehicle"
+    disabled
+  />
+
+  <input type="hidden" name="inv_id" <% if (locals.inv_id) { %> value="<%=
+  locals.inv_id %>" <%}%>>
+</form>
+
+<script src="../../js/inv-update.js"></script>

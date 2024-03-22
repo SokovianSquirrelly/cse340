@@ -125,4 +125,47 @@ accept.checkVehicleData = async (req, res, next) => {
   next();
 };
 
+accept.checkUpdateData = async (req, res, next) => {
+  const {
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_price,
+    inv_miles,
+    inv_color,
+    inv_image,
+    inv_thumbnail,
+    classification_id,
+  } = req.body;
+  let errors = [];
+  errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav();
+    const classList = await utilities.buildClassificationList(
+      classification_id
+    );
+    res.render("inventory/edit-vehicle", {
+      errors,
+      title: "Edit Vehicle",
+      nav,
+      classList,
+      inv_id,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_price,
+      inv_miles,
+      inv_color,
+      inv_image,
+      inv_thumbnail,
+      classification_id,
+    });
+    return;
+  }
+  next();
+};
+
 module.exports = accept;
