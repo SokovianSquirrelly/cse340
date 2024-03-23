@@ -114,11 +114,21 @@ async function updateVehicle(
       inv_miles,
       inv_color,
       classification_id,
-      inv_id
+      inv_id,
     ]);
     return data.rows[0];
   } catch (error) {
     console.error("model error: " + error);
+  }
+}
+
+async function deleteVehicle(inv_id) {
+  try {
+    const sql = "DELETE FROM inventory WHERE inv_id = $1";
+    const data = await pool.query(sql, [inv_id]);
+    return data;
+  } catch (error) {
+    console.error("Delete Inventory Error");
   }
 }
 
@@ -129,4 +139,5 @@ module.exports = {
   createNewClassification,
   createNewVehicle,
   updateVehicle,
+  deleteVehicle,
 };

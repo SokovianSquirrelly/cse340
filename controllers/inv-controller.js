@@ -237,7 +237,7 @@ invCont.updateVehicle = async function (req, res) {
   if (updateResult) {
     req.flash(
       "notice",
-      `The new ${inv_make} ${inv_model} has been succesfully updated.`
+      `The ${inv_make} ${inv_model} has been succesfully updated.`
     );
     res.redirect("/inv/");
   } else {
@@ -259,6 +259,64 @@ invCont.updateVehicle = async function (req, res) {
       inv_miles,
       inv_color,
       classification_id,
+    });
+  }
+};
+
+/* ***************************
+ *  Deleting vehicle
+ * ************************** */
+invCont.deleteConfirmation = async (req, res, next) => {
+  const inv_id = parseInt(req.params.inv_id);
+  let nav = await utilities.getNav();
+  const itemData = await invModel.getInventoryByInventoryId(inv_id);
+  const itemName = `${itemData.inv_make} ${itemData.inv_model}`;
+  res.render("./inventory/delete-vehicle", {
+    title: "Delete " + itemName,
+    nav,
+    errors: null,
+    inv_id: itemData.inv_id,
+    inv_make: itemData.inv_make,
+    inv_model: itemData.inv_model,
+    inv_year: itemData.inv_year,
+    inv_price: itemData.inv_price,
+  });
+};
+
+/* ***************************
+ *  Updating a vehicle in the database
+ * ************************** */
+invCont.deleteVehicle = async function (req, res) {
+  let nav = await utilities.getNav();
+  const {
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_price,
+  } = req.body;
+
+  const deleteResult = await invModel.deleteVehicle(
+    inv_id,
+  );
+
+  if (deleteResult) {
+    req.flash(
+      "notice",
+      `The ${inv_make} ${inv_model} has been succesfully deleted.`
+    );
+    res.redirect("/inv/");
+  } else {
+    req.flash("notice", "Sorry, there was an issue.");
+    res.status(501).render("./inventory/delete-vehicle", {
+      title: `Delete ${inv_make} ${inv_model}`,
+      nav,
+      errors: null,
+      inv_id,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_price,
     });
   }
 };
