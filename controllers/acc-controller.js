@@ -136,4 +136,19 @@ async function accountLogin(req, res) {
   }
 }
 
-module.exports = { buildLogin, buildRegister, buildAccountManagement, registerAccount, accountLogin };
+async function buildUpdateView(req, res) {
+  const account_id = parseInt(req.params.account_id);
+  let nav = await utilities.getNav();
+  res.render("account/account-update", {
+    title: "Update Account",
+    nav,
+    errors: null,
+  });
+}
+
+async function logout(req, res) {
+  res.clearCookie("jwt");
+  res.redirect("/");
+}
+
+module.exports = { buildLogin, buildRegister, buildAccountManagement, registerAccount, accountLogin, buildUpdateView, logout };

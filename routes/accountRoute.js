@@ -29,4 +29,11 @@ router.get(
   utilities.handleErrors(accController.buildAccountManagement)
 );
 
+router.get(
+  "/update/:account_id",
+  utilities.handleErrors(accController.buildUpdateView)
+);
+
+router.get("/logout", utilities.handleErrors(accController.logout));
+
 module.exports = router;
