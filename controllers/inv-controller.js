@@ -241,7 +241,9 @@ invCont.updateVehicle = async function (req, res) {
     );
     res.redirect("/inv/");
   } else {
-    const classificationSelect = await utilities.buildClassificationList(classification_id)
+    const classificationSelect = await utilities.buildClassificationList(
+      classification_id
+    );
     req.flash("notice", "Sorry, there was an issue.");
     res.status(501).render("./inventory/edit-vehicle", {
       title: `Edit ${inv_make} ${inv_model}`,
@@ -288,17 +290,9 @@ invCont.deleteConfirmation = async (req, res, next) => {
  * ************************** */
 invCont.deleteVehicle = async function (req, res) {
   let nav = await utilities.getNav();
-  const {
-    inv_id,
-    inv_make,
-    inv_model,
-    inv_year,
-    inv_price,
-  } = req.body;
+  const { inv_id, inv_make, inv_model, inv_year, inv_price } = req.body;
 
-  const deleteResult = await invModel.deleteVehicle(
-    inv_id,
-  );
+  const deleteResult = await invModel.deleteVehicle(inv_id);
 
   if (deleteResult) {
     req.flash(

@@ -136,14 +136,100 @@ async function accountLogin(req, res) {
   }
 }
 
+/* ****************************************
+ *  Build update view
+ * ************************************ */
 async function buildUpdateView(req, res) {
   const account_id = parseInt(req.params.account_id);
   let nav = await utilities.getNav();
+  const accountData = await accModel.getAccountById(account_id);
   res.render("account/account-update", {
     title: "Update Account",
     nav,
     errors: null,
+    account_id: accountData.account_id,
+    account_firstname: accountData.account_firstname,
+    account_lastname: accountData.account_lastname,
+    account_email: accountData.account_email,
   });
+}
+
+async function updateAccount(req, res) {
+  let nav = await utilities.getNav();
+  const { account_id, account_firstname, account_lastname, account_email } =
+    req.body;
+
+  const updateResult = await accModel.updateAccount(
+    account_id,
+    account_firstname,
+    account_lastname,
+    account_email
+  );
+
+  if (updateResult) {
+    req.flash("notice", "Your account has been successfully updated.");
+    res.redirect("/account");
+  } else {
+    req.flash("notice", "Sorry, there was an issue");
+    res.status(501).render("account/account-update", {
+      title: "Update Account",
+      nav,
+      errors: null,
+      account_id,
+      account_firstname,
+      account_lastname,
+      account_email,
+    });
+  }
+}
+
+async function updatePassword(req, res) {
+  let nav = await utilities.getNav();
+  const {
+    account_id,
+    account_password,
+    account_firstname,
+    account_lastname,
+    account_email,
+  } = req.body;
+
+  let hashedPassword;
+  try {
+    // regular password and cost (salt is generated automatically)
+    hashedPassword = await bcrypt.hashSync(account_password, 10);
+  } catch (error) {
+    req.flash("notice", "Sorry, there was an error updating the password.");
+    res.status(500).render("account/account-update", {
+      title: "Update Account",
+      nav,
+      errors: null,
+      account_id,
+      account_firstname,
+      account_lastname,
+      account_email,
+    });
+  }
+
+  const updateResult = await accModel.updatePassword(
+    account_id,
+    hashedPassword
+  );
+
+  if (updateResult) {
+    req.flash("notice", "Your account has been successfully updated.");
+    res.redirect("/account");
+  } else {
+    req.flash("notice", "Sorry, there was an issue");
+    res.status(501).render("account/account-update", {
+      title: "Update Account",
+      nav,
+      errors: null,
+      account_id,
+      account_firstname,
+      account_lastname,
+      account_email,
+    });
+  }
 }
 
 async function logout(req, res) {
@@ -151,4 +237,14 @@ async function logout(req, res) {
   res.redirect("/");
 }
 
-module.exports = { buildLogin, buildRegister, buildAccountManagement, registerAccount, accountLogin, buildUpdateView, logout };
+module.exports = {
+  buildLogin,
+  buildRegister,
+  buildAccountManagement,
+  registerAccount,
+  accountLogin,
+  buildUpdateView,
+  updateAccount,
+  updatePassword,
+  logout,
+};

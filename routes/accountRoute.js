@@ -34,6 +34,20 @@ router.get(
   utilities.handleErrors(accController.buildUpdateView)
 );
 
+router.post(
+  "/update/account-info",
+  regValidate.updateRules(),
+  regValidate.checkUpdateData,
+  utilities.handleErrors(accController.updateAccount)
+);
+
+router.post(
+  "/update/password",
+  regValidate.updatePasswordRules(),
+  regValidate.checkUpdateData,
+  utilities.handleErrors(accController.updatePassword)
+);
+
 router.get("/logout", utilities.handleErrors(accController.logout));
 
 module.exports = router;

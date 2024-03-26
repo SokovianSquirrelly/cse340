@@ -8,24 +8,61 @@
 </ul>
 <% } %>
 
-<form action="">
-    <label for="">First Name</label>
-    <input type="text" required>
+<form action="/account/update/account-info" method="post">
+  <h3>Update Account Information</h3>
+  <p>All fields are required</p>
+  <label for="account_firstname">First Name</label>
+  <input
+    id="account_firstname"
+    type="text"
+    name="account_firstname"
+    class="textinp"
+    value="<%= account_firstname %>"
+    required
+  />
 
-    <label for="">Last Name</label>
-    <input type="text" required>
+  <label for="account_lastname">Last Name</label>
+  <input
+    id="account_lastname"
+    type="text"
+    name="account_lastname"
+    class="textinp"
+    value="<%= account_lastname %>"
+    required
+  />
 
-    <label for="">Email</label>
-    <input type="email" required>
+  <label for="account_email">Email</label>
+  <input
+    id="account_email"
+    type="email"
+    name="account_email"
+    class="textinp"
+    value="<%= account_email %>"
+    required
+  />
 
-    <input type="hidden">
+  <input type="hidden" name="account_id" value="<%= account_id %>" />
 
-    <input type="submit">
+  <input type="submit" class="submit-button" value="Update Account" />
 </form>
 
-<form action="">
-    <label for=""></label>
-    <input type="password">
+<form action="/account/update/password" method="post">
+  <h3>Change Password</h3>
+  <label for="account_password"></label>
+  <input
+    type="password"
+    name="account_password"
+    class="textinp"
+    id="account_password"
+    required
+    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+  />
+  <p class="input-instructions">
+    Passwords must be at least 12 characters and contain at least 1 number, 1
+    capital letter and 1 special character.
+  </p>
 
-    <input type="submit">
+  <input type="hidden" name="account_id" value="<%= account_id %>" />
+
+  <input type="submit" class="submit-button" value="Update Password" />
 </form>
