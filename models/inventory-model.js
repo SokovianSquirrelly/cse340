@@ -1,16 +1,45 @@
 const pool = require("../database/");
 
 /* ***************************
- *  Get all classification data
+ *  Get approved classification data
  * ************************** */
 async function getClassifications() {
   return await pool.query(
-    "SELECT * FROM public.classification ORDER BY classification_name"
+    `SELECT * FROM public.classification AS c
+    WHERE c.classification_approved
+    ORDER BY classification_name`
+  );
+}
+
+async function getClassificationsInStock() {
+  return await pool.query(
+    `SELECT * FROM public.classification AS c
+    INNER JOIN public.inventory as i
+    USING (classification_id)
+    WHERE c.classification_approved
+    AND i.inv_approved
+    ORDER BY classification_name`
   );
 }
 
 /* ***************************
- *  Get all inventory items and classification_name by classification_id
+ *  Get non-approved classification data
+ * ************************** */
+async function getClassificationsPendingApproval() {
+  return await pool.query(
+    `SELECT * FROM public.classification AS c WHERE c.classification_approved = FALSE ORDER BY classification_name`
+  );
+}
+
+async function getInventoryPendingApproval() {
+  return await pool.query(
+    `SELECT * FROM public.inventory AS i
+    WHERE i.inv_approved = FALSE`
+  )
+}
+
+/* ***************************
+ *  Get approved inventory items and classification_name by classification_id
  * ************************** */
 async function getInventoryByClassificationId(classification_id) {
   try {
@@ -18,7 +47,8 @@ async function getInventoryByClassificationId(classification_id) {
       `SELECT * FROM public.inventory AS i 
       JOIN public.classification AS c 
       ON i.classification_id = c.classification_id 
-      WHERE i.classification_id = $1`,
+      WHERE i.classification_id = $1
+      AND i.inv_approved`,
       [classification_id]
     );
     return data.rows;
@@ -134,6 +164,9 @@ async function deleteVehicle(inv_id) {
 
 module.exports = {
   getClassifications,
+  getClassificationsInStock,
+  getClassificationsPendingApproval,
+  getInventoryPendingApproval,
   getInventoryByClassificationId,
   getInventoryByInventoryId,
   createNewClassification,
