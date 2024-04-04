@@ -123,7 +123,7 @@ validate.checkLoginData = async (req, res, next) => {
 /*  **********************************
  *  Update Account Validation Rules
  * ********************************* */
-validate.updateRules = async (req, res, next) => {
+validate.updateRules = () => {
   return [
     // firstname is required and must be string
     body("account_firstname")
