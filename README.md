@@ -1,47 +1,33 @@
-## Getting Started
+# CSE Motors
 
-This document is intended to get you started quickly in building a backend driven Node.js application complete with pages and content, backend logic and a PostgreSQL database for data storage.
-## Prerequisites
+## Introduction
+This is a project I was working on while learning web backend development while I was a student at BYU-Idaho.  It's a mock e-commerce website for selling cars, though I'm sorry to say, you're not actually going to get a car by shopping here, so if you come shopping for the Mystery Machine from Scooby-Doo, I don't actually have one of those casually sitting in my garage, so you're out of luck.
 
-The only prerequisite software required to have installed at this point is Git for version control and a code editor - we will use VS Code (VSC).
+## Accounts
+Some features of this project are locked behind certain accounts.  This is because some features can only be accessed by a site admin or site employee.  The three types of accounts with this site are customer, employee, or manager.  Here's a breakdown of what each one can do:
 
-## Package Management
+### Customer
+- Update their account information including password
+- "Shop" for vehicles that have been approved by a manager
 
-The foundation of the project development software is Node. While functional, Node depends on "packages" to add functionality to accomplish common tasks. This requires a package manager. Three common managers are NPM (Node Package Manager), YARN, and PNPM. While all do the same thing, they do it slightly differently. We will use PNPM for two reasons: 1) All packages are stored on your computer only once and then symlinks (system links) are created from the package to the project as needed, 2) performance is increased meaning that when the project builds, it does so faster.
-You will need to either install or activate PNPM before using it. See https://pnpm.io/
+### Employee
+- Everything the customer can do
+- Add, update, or remove vehicles and vehicle classifications from the database (they must be approved by a manager in order to appear on the site to everyone)
 
-## Install the Project Dependencies
+### Manager
+- Everything the customer and employee can do
+- Approve vehicles and classifications that have been added by an employee
 
-1. Open the downloaded project folder (where this file is located) in VS Code (VSC).
-2. Open the VSC terminal: Terminal > New Window.
-3. Run the following command in the terminal:
+I also have login information for each account.  Feel free to play around with the site and don't worry about updating or deleting too much.  I have the backup SQL files to restore the database.
 
-    pnpm install
+### Customer Credentials
+- Username: basic@340.edu
+- Password: I@mABas1cCl!3nt
 
-4. The first time it may take a few minutes, depending on the speed of your computer and the speed of your Internet connection. This command will instruct PNPM to read the package.json file and download and install the dependencies (packages) needed for the project. It will build a "node_modules" folder storing each dependency and its dependencies. It should also create a pnpm-lock.yaml file. This file should NEVER be altered by you. It is an internal file (think of it as an inventory) that PNPM uses to keep track of everything in the project.
+### Employee Credentials
+- Username: happy@340.edu
+- Password: I@mAnEmpl0y33
 
-## Start the Express Server
-
-With the packages installed you're ready to run the initial test.
-1. If the VSC terminal is still open use it. If it is closed, open it again using the same command as before.
-2. Type the following command, then press Enter:
-
-    pnpm run dev
-
-3. If the command works, you should see the message "app listening on localhost:5500" in the console.
-4. Open the package.json file.
-5. Note the "Scripts" area? There is a line with the name of "dev", which tells the nodemon package to run the server.js file.
-6. This is the command you just ran.
-7. Open the server.js file.
-8. Near the bottom you'll see two variables "Port" and "Host". The values for the variables are stored in the .env file.
-9. These variables are used when the server starts on your local machine.
-
-## Move the demo file
-
-When you installed Git and cloned the remote repository in week 1, you should have created a simple web page.
-1. Find and move that simple web page to the public folder. Be sure to note its name.
-## Test in a browser
-
-1. Go to http://localhost:5500 in a browser tab. Nothing should be visible as the server has not been setup to repond to that route.
-2. Add "/filename.html" to the end of the URL (replacing filename with the name of the file you moved to the public folder).
-3. You should see that page in the browser.
+### Manager Credentials
+- Username: manager@340.edu
+- Password: I@mAnAdm!n1strat0r
