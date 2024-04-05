@@ -329,24 +329,30 @@ invCont.getInventoryPendingApproval = async function (req, res) {
 
   if (classification_list.length != 0) {
     classification_approvals = `<div class="approval-list">`;
+    classification_approvals += `<h3>Classifications pending approval</h3>`;
     classification_list.forEach((classification) => {
       classification_approvals += `<form action="/inv/approve-class" method="post">`;
-      classification_approvals += `<h3>${classification.classification_name}</h3>`;
+      classification_approvals += `<h4>${classification.classification_name}</h4>`;
       classification_approvals += `<input type="submit" class="submit-button" value="Approve"/>`;
       classification_approvals += "</form>";
     });
     classification_approvals += `</div>`;
+  } else {
+    classification_approvals = `<h3>There are no classifications pending approval right now.</h3>`;
   }
 
   if (vehicle_list.length != 0) {
     vehicle_approvals = `<div class="approval-list">`;
+    vehicle_approvals += `<h3>Vehicles pending approval</h3>`;
     vehicle_list.forEach((vehicle) => {
       vehicle_approvals += `<form action="/inv/approve-class" method="post">`;
-      vehicle_approvals += `<h3>${vehicle.inv_make} ${vehicle.inv_model}</h3>`;
+      vehicle_approvals += `<h4>${vehicle.inv_make} ${vehicle.inv_model}</h4>`;
       vehicle_approvals += `<input type="submit" class="submit-button" value="Approve"/>`;
       vehicle_approvals += "</form>";
     });
     vehicle_approvals += `</div>`;
+  } else {
+    vehicle_approvals = `<h3>There are no vehicles pending approval right now.</h3>`;
   }
 
   res.render("./inventory/inventory-approval", {
