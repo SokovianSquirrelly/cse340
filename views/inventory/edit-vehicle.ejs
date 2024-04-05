@@ -95,14 +95,9 @@
     required
     value="/images/vehicles/no-image-tn.png"
   />
-  <input
-    type="submit"
-    class="submit-button"
-    value="Update Vehicle"
-    disabled
-  />
+  <input type="submit" class="submit-button" value="Update Vehicle" disabled />
 
-  <input type="hidden" name="inv_id" <% if (locals.inv_id) { %> value="<%=
+  <input type="hidden" name="inv_id" <% if (locals.inv_id) { % /> value="<%=
   locals.inv_id %>" <%}%>>
 </form>
 

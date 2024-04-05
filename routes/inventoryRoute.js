@@ -64,4 +64,9 @@ router.get(
 
 router.post("/delete", utilities.handleErrors(invController.deleteVehicle));
 
+router.get(
+  "/inventory-approval",
+  utilities.handleErrors(invController.getInventoryPendingApproval)
+);
+
 module.exports = router;

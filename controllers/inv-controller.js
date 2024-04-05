@@ -315,4 +315,46 @@ invCont.deleteVehicle = async function (req, res) {
   }
 };
 
+invCont.getInventoryPendingApproval = async function (req, res) {
+  let nav = await utilities.getNav();
+
+  const classification_results =
+    await invModel.getClassificationsPendingApproval();
+  const classification_list = classification_results.rows;
+  const vehicle_results = await invModel.getInventoryPendingApproval();
+  const vehicle_list = vehicle_results.rows;
+
+  let classification_approvals;
+  let vehicle_approvals;
+
+  if (classification_list.length != 0) {
+    classification_approvals = `<div class="approval-list">`;
+    classification_list.forEach((classification) => {
+      classification_approvals += `<form action="/inv/approve-class" method="post">`;
+      classification_approvals += `<h3>${classification.classification_name}</h3>`;
+      classification_approvals += `<input type="submit" class="submit-button" value="Approve"/>`;
+      classification_approvals += "</form>";
+    });
+    classification_approvals += `</div>`;
+  }
+
+  if (vehicle_list.length != 0) {
+    vehicle_approvals = `<div class="approval-list">`;
+    vehicle_list.forEach((vehicle) => {
+      vehicle_approvals += `<form action="/inv/approve-class" method="post">`;
+      vehicle_approvals += `<h3>${vehicle.inv_make} ${vehicle.inv_model}</h3>`;
+      vehicle_approvals += `<input type="submit" class="submit-button" value="Approve"/>`;
+      vehicle_approvals += "</form>";
+    });
+    vehicle_approvals += `</div>`;
+  }
+
+  res.render("./inventory/inventory-approval", {
+    title: "Inventory Pending Approval",
+    nav,
+    classification_approvals,
+    vehicle_approvals,
+  });
+};
+
 module.exports = invCont;
