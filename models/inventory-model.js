@@ -35,7 +35,7 @@ async function getInventoryPendingApproval() {
   return await pool.query(
     `SELECT * FROM public.inventory AS i
     WHERE i.inv_approved = FALSE`
-  )
+  );
 }
 
 /* ***************************
@@ -162,6 +162,36 @@ async function deleteVehicle(inv_id) {
   }
 }
 
+async function approveClass(classification_id, admin_id) {
+  try {
+    const sql =
+      "UPDATE public.classification SET classification_approved = TRUE, account_id = $1, classification_approval_date = $2 WHERE classification_id = $3 RETURNING *";
+    const data = await pool.query(sql, [
+      admin_id,
+      new Date(),
+      classification_id,
+    ]);
+    return data.rows[0];
+  } catch (error) {
+    console.error(`Problem approving classification: ${error}`);
+  }
+}
+
+async function approveVehicle(inv_id, admin_id) {
+  try {
+    const sql =
+      "UPDATE public.inventory SET inv_approved = TRUE, account_id = $1, inv_approved_date = $2 WHERE inv_id = $3 RETURNING *";
+    const data = await pool.query(sql, [
+      admin_id,
+      new Date(),
+      inv_id,
+    ]);
+    return data.rows[0];
+  } catch (error) {
+    console.error(`Problem approving vehicle: ${error}`);
+  }
+}
+
 module.exports = {
   getClassifications,
   getClassificationsInStock,
@@ -173,4 +203,6 @@ module.exports = {
   createNewVehicle,
   updateVehicle,
   deleteVehicle,
+  approveClass,
+  approveVehicle,
 };

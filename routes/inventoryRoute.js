@@ -26,12 +26,14 @@ router.get(
 
 router.get(
   "/new-classification",
+  utilities.checkLogin,
   utilities.checkIfEmployee,
   utilities.handleErrors(invController.buildNewClassification)
 );
 
 router.get(
   "/new-vehicle",
+  utilities.checkLogin,
   utilities.checkIfEmployee,
   utilities.handleErrors(invController.buildNewVehicle)
 );
@@ -57,6 +59,7 @@ router.get(
 
 router.get(
   "/edit/:inv_id",
+  utilities.checkLogin,
   utilities.checkIfEmployee,
   utilities.handleErrors(invController.editVehicle)
 );
@@ -70,6 +73,7 @@ router.post(
 
 router.get(
   "/delete/:inv_id",
+  utilities.checkLogin,
   utilities.checkIfEmployee,
   utilities.handleErrors(invController.deleteConfirmation)
 );
@@ -78,8 +82,19 @@ router.post("/delete", utilities.handleErrors(invController.deleteVehicle));
 
 router.get(
   "/inventory-approval",
+  utilities.checkLogin,
   utilities.checkIfAdmin,
   utilities.handleErrors(invController.getInventoryPendingApproval)
+);
+
+router.post(
+  "/approve-class",
+  utilities.handleErrors(invController.approveClassification)
+);
+
+router.post(
+  "/approve-vehicle",
+  utilities.handleErrors(invController.approveVehicle)
 );
 
 module.exports = router;

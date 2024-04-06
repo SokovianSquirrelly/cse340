@@ -345,7 +345,7 @@ invCont.getInventoryPendingApproval = async function (req, res) {
     vehicle_approvals = `<div class="approval-list">`;
     vehicle_approvals += `<h3>Vehicles pending approval</h3>`;
     vehicle_list.forEach((vehicle) => {
-      vehicle_approvals += `<form action="/inv/approve-class" method="post">`;
+      vehicle_approvals += `<form action="/inv/approve-vehicle" method="post">`;
       vehicle_approvals += `<h4>${vehicle.inv_make} ${vehicle.inv_model}</h4>`;
       vehicle_approvals += `<input type="submit" class="submit-button" value="Approve"/>`;
       vehicle_approvals += "</form>";
@@ -361,6 +361,41 @@ invCont.getInventoryPendingApproval = async function (req, res) {
     classification_approvals,
     vehicle_approvals,
   });
+};
+
+invCont.approveClassification = async function (req, res) {
+  //let nav = await utilities.getNav();
+  const { classification_id, classification_name } = req.body;
+  const approvalResult = await invModel.approveClass(
+    classification_id,
+    res.locals.accountData.account_id
+  );
+
+  if (approvalResult) {
+    req.flash(
+      "notice",
+      `The classification, ${classification_name}, has been succesfully approved.`
+    );
+  } else {
+    req.flash("notice", "Sorry, there was an issue.");
+  }
+};
+
+invCont.approveVehicle = async function (req, res) {
+  const { inv_id, inv_make, inv_model } = req.body;
+  const approvalResult = await invModel.approveVehicle(
+    inv_id,
+    res.locals.accountData.account_id
+  );
+
+  if (approvalResult) {
+    req.flash(
+      "notice",
+      `The ${inv_make} ${inv_model} has been succesfully approved.`
+    );
+  } else {
+    req.flash("notice", "Sorry, there was an issue.");
+  }
 };
 
 module.exports = invCont;
