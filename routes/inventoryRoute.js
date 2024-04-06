@@ -17,15 +17,22 @@ router.get(
   utilities.handleErrors(invController.buildByInventoryId)
 );
 
-router.get("/", utilities.handleErrors(invController.buildManagement));
+router.get(
+  "/",
+  utilities.checkLogin,
+  utilities.checkIfEmployee,
+  utilities.handleErrors(invController.buildManagement)
+);
 
 router.get(
   "/new-classification",
+  utilities.checkIfEmployee,
   utilities.handleErrors(invController.buildNewClassification)
 );
 
 router.get(
   "/new-vehicle",
+  utilities.checkIfEmployee,
   utilities.handleErrors(invController.buildNewVehicle)
 );
 
@@ -48,7 +55,11 @@ router.get(
   utilities.handleErrors(invController.getInventoryJSON)
 );
 
-router.get("/edit/:inv_id", utilities.handleErrors(invController.editVehicle));
+router.get(
+  "/edit/:inv_id",
+  utilities.checkIfEmployee,
+  utilities.handleErrors(invController.editVehicle)
+);
 
 router.post(
   "/update/",
@@ -59,6 +70,7 @@ router.post(
 
 router.get(
   "/delete/:inv_id",
+  utilities.checkIfEmployee,
   utilities.handleErrors(invController.deleteConfirmation)
 );
 
@@ -66,6 +78,7 @@ router.post("/delete", utilities.handleErrors(invController.deleteVehicle));
 
 router.get(
   "/inventory-approval",
+  utilities.checkIfAdmin,
   utilities.handleErrors(invController.getInventoryPendingApproval)
 );
 

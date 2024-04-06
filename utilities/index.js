@@ -160,4 +160,25 @@ Util.checkLogin = (req, res, next) => {
   }
 };
 
+Util.checkIfEmployee = (req, res, next) => {
+  if (
+    res.locals.accountData.account_type == "Employee" ||
+    res.locals.accountData.account_type == "Admin"
+  ) {
+    next();
+  } else {
+    req.flash("notice", "Only employees can access that page.  Please log in.");
+    return res.redirect("/account/login");
+  }
+};
+
+Util.checkIfAdmin = (req, res, next) => {
+  if (res.locals.accountData.account_type == "Admin") {
+    next();
+  } else {
+    req.flash("notice", "Only managers can access that page.  Please log in.");
+    return res.redirect("/account/login");
+  }
+};
+
 module.exports = Util;
