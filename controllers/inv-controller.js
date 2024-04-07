@@ -333,6 +333,8 @@ invCont.getInventoryPendingApproval = async function (req, res) {
     classification_list.forEach((classification) => {
       classification_approvals += `<form action="/inv/approve-class" method="post">`;
       classification_approvals += `<h4>${classification.classification_name}</h4>`;
+      classification_approvals += `<input type="hidden" name="classification_id" value="${classification.classification_id}"/>`;
+      classification_approvals += `<input type="hidden" name="classification_name" value="${classification.classification_name}"/>`;
       classification_approvals += `<input type="submit" class="submit-button" value="Approve"/>`;
       classification_approvals += "</form>";
     });
@@ -347,6 +349,9 @@ invCont.getInventoryPendingApproval = async function (req, res) {
     vehicle_list.forEach((vehicle) => {
       vehicle_approvals += `<form action="/inv/approve-vehicle" method="post">`;
       vehicle_approvals += `<h4>${vehicle.inv_make} ${vehicle.inv_model}</h4>`;
+      vehicle_approvals += `<input type="hidden" name="inv_id" value="${vehicle.inv_id}"/>`;
+      vehicle_approvals += `<input type="hidden" name="inv_make" value="${vehicle.inv_make}"/>`;
+      vehicle_approvals += `<input type="hidden" name="inv_model" value="${vehicle.inv_model}"/>`;
       vehicle_approvals += `<input type="submit" class="submit-button" value="Approve"/>`;
       vehicle_approvals += "</form>";
     });
@@ -366,6 +371,8 @@ invCont.getInventoryPendingApproval = async function (req, res) {
 invCont.approveClassification = async function (req, res) {
   //let nav = await utilities.getNav();
   const { classification_id, classification_name } = req.body;
+  console.log(classification_id);
+  console.log(classification_name);
   const approvalResult = await invModel.approveClass(
     classification_id,
     res.locals.accountData.account_id
